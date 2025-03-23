@@ -1,4 +1,4 @@
-E-commerce con React y Firebase
+# E-commerce con React y Firebase
 
 Este proyecto es una Single Page Application (SPA) de un e-commerce desarrollada con React y Firebase. Permite a los usuarios explorar un catálogo de productos, ver detalles de cada producto, agregar productos al carrito y realizar compras. Los datos de los productos y las órdenes de compra se almacenan en Firestore, la base de datos de Firebase.
 Características Principales
@@ -13,7 +13,7 @@ Características Principales
 
     Diseño Responsive: La aplicación se adapta a diferentes dispositivos (móviles, tablets y desktop).
 
-Tecnologías Utilizadas
+# Tecnologías Utilizadas
 
     Frontend:
 
