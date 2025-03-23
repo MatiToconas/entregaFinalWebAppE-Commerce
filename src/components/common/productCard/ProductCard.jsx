@@ -1,10 +1,12 @@
+import { Link } from "react-router";
 import "./productCard.css";
-export const ProductCard = ({ title, price }) => {
-
+export const ProductCard = ({ item }) => {
   return (
     <div className="container-card">
-      <h3> {title} </h3>
-      <h3> {price} </h3>
+      <img style={{ width: "100px" }} src={item.imageUrl} alt="" />
+      <h3> {item.title} </h3>
+      <h3> {item.price} </h3>
+      <Link to={`/itemDetail/${item.id}`}>Ver detalle</Link>
     </div>
   );
 };

@@ -1,22 +1,48 @@
+import { useEffect, useState } from "react";
+//import { products } from "../../../products";
 import { ProductCard } from "../../common/productCard/ProductCard";
+import { useParams } from "react-router";
+import { db } from "../../../firebase/firebaseConfig";
+import { collection, addDoc, getDocs, query, where } from "firebase/firestore";
+import "./itemListContainer.css";
 
-export const ItemListContainer = ({ greeting }) => {
-  let nombreDeUsuario = "pepe";
-  const saludar = () => {
-    console.log(nombreDeUsuario);
-  };
+
+export const ItemListContainer = () => {
+  const [items, setItems] = useState([]);
+  const { name } = useParams();
+
+  useEffect(() => {
+    let refCollection = collection(db, "products");
+    let consulta = refCollection;         
+    if (name) {
+      consulta = query(refCollection, where("category", "==", name));
+    }
+    const getProducts = getDocs(consulta);
+
+    getProducts
+      .then((res) => {
+        const nuevoArray = res.docs.map((elemento) => {
+          return { id: elemento.id, ...elemento.data() };
+        });
+        setItems(nuevoArray);
+      })
+      .catch((error) => console.log(error));
+  }, [name]);
+
+  /*const cargar = () => {
+    let refCollection = collection(db, "products");
+    products.forEach((product) => {
+      addDoc(refCollection, product);
+    });
+  };*/
 
   return (
     <section>
-      <h2> {greeting} </h2>
-
-      {console.log("Hola")}
-
+      {/*<button onClick={cargar}>cargar productos</button>*/}
       <h2>Mis productos</h2>
-
-      <ProductCard title="Notebook" price="precio 100000" />
-      <ProductCard title="Teclado" price="precio 15000" />
-      <ProductCard title="Mouse" price="precio 20000" />
+      {items.map((item) => {
+        return <ProductCard key={item.id} item={item} />;
+      })}
     </section>
   );
 };

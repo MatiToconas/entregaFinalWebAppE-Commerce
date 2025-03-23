@@ -1,7 +1,8 @@
-export const Footer = () => {
+const Footer = () => {
     return (
       <footer style={{ backgroundColor: "yellow" }}>
-        <h2>Mis redes sociales: </h2>
+        <h2>&copy; SERVICIO DE COMPUTACIÓN 2025. Todos los derechos reservados.</h2>
       </footer>
     );
   };
+  export default Footer;
